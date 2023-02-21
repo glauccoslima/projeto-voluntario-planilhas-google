@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      .search-bar {
+        position: flex;
+        z-index: 1000;
+        background-color: white;
+        border: 1px solid #ddd;
+        padding: 5px;
+      }       
+    </style>
+  </head>
+  <body>
+    <div class="search-bar">
+      <div class="input-group">
+        <input type="text" class="form-control" id="searchTerm" placeholder="Pesquisar" onkeypress="searchOnEnter(event)">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="searchButton">Pesquisar</button>
+        </span>
+      </div>
+    </div>
+    <script>
+      document.getElementById('searchButton').addEventListener('click', function() {
+        var searchTerm = document.getElementById('searchTerm').value;
+        google.script.run.searchValues(searchTerm);
+      });
+
+      function searchOnEnter(event) {
+        if (event.keyCode === 13) {
+          document.getElementById('searchButton').click();
+        }
+      }
+    </script>
+  </body>
+</html>
